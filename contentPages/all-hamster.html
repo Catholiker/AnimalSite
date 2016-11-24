@@ -1,0 +1,27 @@
+<script type="text/javascript">
+	$(document).ready(function()
+      {
+        $.get('./xml/hamster.xml', function(d){
+        $('div.row').append('<h1> The power of the Hamsters </h1><br>');
+        $('div.row').append('<dl />');
+ 
+        $(d).find('hamster').each(function(){
+ 
+            var $hamster = $(this); 
+            var title = $hamster.attr("title");
+            var description = $hamster.find('description').text();
+            var imageurl = $hamster.attr('imageurl');
+ 
+            var html = '<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12"><dt></dt>';
+            html += '<h3 class="title">' + title + '</h3>';
+            html += '<p> ' + description + '</p>' ;
+            html += '<dd> <img class="hamsterImage" alt="" src="' + imageurl + '" />';
+            html += '</dd></div>';
+ 
+            $('dl').append($(html));
+             
+            $('.loadingPic').fadeOut(140);
+        });
+    });
+});
+</script>
